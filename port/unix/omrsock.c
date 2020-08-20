@@ -855,6 +855,7 @@ omrsock_sendto(struct OMRPortLibrary *portLibrary, omrsock_socket_t sock, uint8_
 
 	if (-1 == bytesSent) {
 		portLibrary->error_set_last_error(portLibrary, errno, get_omr_error(errno));
+		return get_omr_error(errno);
 	}
 
 	return bytesSent;

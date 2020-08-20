@@ -636,6 +636,12 @@ TEST(PortSockTest, two_socket_datagram_communication)
 	for (int32_t i = 0; i < 100; i++) {
 		// Client must initiate conversion with server in IP networking.
 		bytesSent = OMRPORTLIB->sock_sendto(OMRPORTLIB, clientSocket, (uint8_t *)msgDgram, bytesTotal, 0, &serverSockAddr);
+		if (clientSocket == NULL) {
+			printf("Client Socket is NULL \n");
+		}
+		if (bytesTotal <= 0) {
+			printf("bytes total is <= 0 \n");
+		}
 		if (bytesSent < 0) {
 			printf("%d\n", omrerror_last_error_number());
 			FAIL() << "Send error: " << ::testing::PrintToString(omrerror_last_error_number());
